@@ -1,0 +1,15 @@
+#extension GL_OES_EGL_image_external : require
+
+varying vec2 v_TexCoords;
+uniform samplerExternalOES sTexture;
+
+vec2 effect(vec2 coords){
+    float x = sin(10.0 * coords.y) * 0.02;
+    float y = sin(10.0 * coords.x) * 0.02;
+    return vec2(coords.x+x, coords.y+y);
+}
+
+void main() {
+    gl_FragColor = texture2D(sTexture,effect(v_TexCoords));
+
+}
